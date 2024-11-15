@@ -5,6 +5,9 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BrowserTab extends Tab {
 
     private final WebView webView;
@@ -43,8 +46,15 @@ public class BrowserTab extends Tab {
         }
     }
 
-    public WebEngine getWebEngine() {
-        return webEngine;
+    // Method to get the history entries for display
+    public List<String> getHistoryEntries() {
+        List<String> historyList = new ArrayList<>();
+        for (WebHistory.Entry entry : webEngine.getHistory().getEntries()) {
+            historyList.add(entry.getUrl());
+        }
+        return historyList;
     }
+
+
 }
 
