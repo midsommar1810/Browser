@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 public class JavaFXBrowser extends Application {
 
@@ -22,6 +23,8 @@ public class JavaFXBrowser extends Application {
         // Create initial tab
         createNewTab("https://www.google.com");
 
+        // Set the icon
+        primaryStage.getIcons().add(new Image("file:///C:/Users//abhis//projects//Browser//images//browser.png"));
 
         // Back Button
         Button backButton = new Button("<-");
@@ -67,6 +70,16 @@ public class JavaFXBrowser extends Application {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN).match(event)) {
                 createNewTab("https://www.google.com");
+            }
+        });
+
+        // Key event to close current tab on Ctrl+X
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN).match(event)) {
+                Tab currentTab = tabPane.getSelectionModel().getSelectedItem();
+                if (currentTab != null){
+                    tabPane.getTabs().remove(currentTab) ;
+                }
             }
         });
 
