@@ -51,6 +51,7 @@ public class BrowserTab extends Tab {
         List<String> historyList = new ArrayList<>();
         for (WebHistory.Entry entry : webEngine.getHistory().getEntries()) {
             historyList.add(entry.getUrl());
+            historyList.add(entry.getTitle()) ;
         }
         return historyList;
     }

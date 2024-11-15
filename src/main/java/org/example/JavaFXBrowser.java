@@ -63,7 +63,12 @@ public class JavaFXBrowser extends Application {
             }
         });
 
-
+        // Key event to toggle new tab on Ctrl+T
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN).match(event)) {
+                createNewTab("https://www.google.com");
+            }
+        });
 
         primaryStage.show();
     }
